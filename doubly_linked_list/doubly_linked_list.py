@@ -128,21 +128,24 @@ class DoublyLinkedList:
     List and inserts it as the new head node of the List.
     """
     def move_to_front(self, node):
-        pass
+        self.delete(node)
+        self.add_to_head(node.value)
         
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        self.delete(node)
+        self.add_to_tail(node.value)
+
 
     """
     Deletes the input node from the List, preserving the 
     order of the other elements of the List.
     """
     def delete(self, node):
-        if self.lenth == 0:
+        if self.length == 0:
             return
         elif node is self.head:
             return self.remove_from_head()
@@ -171,10 +174,22 @@ class DoublyLinkedList:
     in the List.
     """
     def get_max(self):
-        if not self.head:
+        if self.length == 0:
             return None
         
-        max_value = self.headd.value
+        current = self.head
+        maxValue = self.head.value
+
+        while current:
+            if current.value > maxValue:
+                maxValue = current.value
+            current = current.next
+
+        return maxValue
+
+        
+
+
 
 x = DoublyLinkedList(ListNode(5))
 print(x)
